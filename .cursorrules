@@ -1,0 +1,42 @@
+# Campaign Builder — Cursor Rules
+
+## Project Context
+Internal tool for Partrunner's growth team to create Meta Ads campaigns for driver recruitment. Conversational wizard guided by "Aurora" AI agent.
+
+## Tech Stack
+- Vite 5 + React 18 + TypeScript (strict) + Tailwind CSS 3
+- Path alias: `@/` → `src/`
+- No CSS files (Tailwind only), no CSS-in-JS
+- Functional components only, hooks for state
+
+## API Integration
+- Meta Marketing API v21.0 (stubs in `src/services/metaAdsService.ts`)
+- Gemini API for image generation (stubs in `src/services/geminiService.ts`)
+- Env vars: VITE_META_APP_ID, VITE_META_ACCESS_TOKEN, VITE_META_AD_ACCOUNT_ID, VITE_GEMINI_API_KEY
+
+## Brand Rules (STRICT)
+- Colors: #FDD238 (yellow), #000000 (black), #FFFFFF (white) — NO other colors
+- Fonts: Bebas Neue (titles, `font-display`), Barlow (body, `font-sans`)
+- Tailwind tokens: `pr-yellow`, `pr-black`, `pr-white`
+- Logo base URL: https://lrzcturtxtzhdzqacefy.supabase.co/storage/v1/object/public/Imagenes/
+- Dark theme default
+
+## Conventions
+- Types in `src/types/`, services in `src/services/`, hooks in `src/hooks/`
+- All API functions are async, return typed responses
+- Mock data for development, TODO comments for real implementation
+- Spanish UI text, English code/comments
+
+## Key Decisions
+- Wizard state managed via useWizard hook (no external state lib)
+- Campaign history in localStorage
+- Toast notifications via useToast hook
+- Aurora conversational UI with chat bubbles per step
+
+## Known TODOs
+- [ ] Real Meta Marketing API integration
+- [ ] Real Gemini image generation
+- [ ] CSV audience upload
+- [ ] Video ad format support
+- [ ] Campaign analytics dashboard
+- [ ] Authentication/authorization
