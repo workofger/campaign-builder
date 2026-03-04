@@ -10,7 +10,7 @@ interface StepIndicatorProps {
 
 export function StepIndicator({ currentStep, completedSteps, onStepClick }: StepIndicatorProps) {
   return (
-    <div className="flex items-center gap-1 sm:gap-2 px-4 py-3 bg-black/50 border-b border-pr-yellow/10 overflow-x-auto">
+    <div className="flex items-center gap-1 sm:gap-2 px-4 py-3 bg-black/50 border-b border-pr-yellow/10 overflow-x-auto font-sans">
       {WIZARD_STEPS.map((step, i) => {
         const isActive = step.key === currentStep;
         const isCompleted = completedSteps.includes(step.key);

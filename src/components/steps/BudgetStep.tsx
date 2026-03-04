@@ -1,3 +1,4 @@
+import { Zap } from 'lucide-react';
 import { AuroraMessage } from '@/components/AuroraMessage';
 import type { CampaignConfig, BudgetConfig, BudgetType, BidStrategy } from '@/types/campaign';
 
@@ -20,6 +21,50 @@ export function BudgetStep({ config, onUpdate, onNext, onPrev }: Props) {
       <AuroraMessage
         message={`Basándome en tu objetivo "${config.objective?.label || ''}" y audiencia, te recomiendo un presupuesto diario de $${suggested} MXN. Puedes ajustarlo según tus necesidades. 💰`}
       />
+
+      {/* Advantage+ Toggle */}
+      <div className={`border rounded-xl p-4 mb-4 transition-all cursor-pointer ${
+        config.useAdvantage
+          ? 'bg-blue-500/10 border-blue-500/30'
+          : 'bg-white/5 border-white/10'
+      }`}
+        onClick={() => onUpdate({ useAdvantage: !config.useAdvantage })}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-lg ${config.useAdvantage ? 'bg-blue-500/20' : 'bg-white/10'}`}>
+              <Zap size={20} className={config.useAdvantage ? 'text-blue-400' : 'text-white/40'} />
+            </div>
+            <div>
+              <p className={`font-semibold text-sm ${config.useAdvantage ? 'text-blue-400' : 'text-white/70'}`}>
+                Advantage+ Campaign
+              </p>
+              <p className="text-xs text-white/40 mt-0.5">
+                Meta AI optimiza automáticamente audiencia, ubicaciones y presupuesto para maximizar resultados
+              </p>
+            </div>
+          </div>
+          <div className={`w-11 h-6 rounded-full relative transition-colors ${config.useAdvantage ? 'bg-blue-500' : 'bg-white/20'}`}>
+            <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${config.useAdvantage ? 'translate-x-5' : 'translate-x-0.5'}`} />
+          </div>
+        </div>
+        {config.useAdvantage && (
+          <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+            <div className="bg-blue-500/10 rounded-lg p-2 text-center text-blue-300">
+              <p className="font-semibold">Audience</p>
+              <p className="text-blue-300/60">Auto-optimizada</p>
+            </div>
+            <div className="bg-blue-500/10 rounded-lg p-2 text-center text-blue-300">
+              <p className="font-semibold">Placements</p>
+              <p className="text-blue-300/60">Todas las plataformas</p>
+            </div>
+            <div className="bg-blue-500/10 rounded-lg p-2 text-center text-blue-300">
+              <p className="font-semibold">Budget</p>
+              <p className="text-blue-300/60">A nivel campaña</p>
+            </div>
+          </div>
+        )}
+      </div>
 
       <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-5">
         {/* Budget type toggle */}

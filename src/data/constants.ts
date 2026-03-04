@@ -105,27 +105,10 @@ export function createDefaultConfig(): CampaignConfig {
       format: 'single_image',
       images: [],
     },
+    useAdvantage: true,
     status: 'draft',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
 }
 
-export const MOCK_CAMPAIGNS: CampaignConfig[] = [
-  {
-    ...createDefaultConfig(),
-    id: 'mock-1',
-    name: 'Reclutamiento CDMX Feb 2026',
-    objective: OBJECTIVES[0],
-    status: 'launched',
-    createdAt: '2026-02-10T10:00:00Z',
-  },
-  {
-    ...createDefaultConfig(),
-    id: 'mock-2',
-    name: 'Flotillas Monterrey',
-    objective: OBJECTIVES[1],
-    status: 'draft',
-    createdAt: '2026-02-20T15:00:00Z',
-  },
-];

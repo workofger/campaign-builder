@@ -7,7 +7,7 @@ interface AuroraMessageProps {
 
 export function AuroraMessage({ message, children }: AuroraMessageProps) {
   return (
-    <div className="flex gap-3 mb-6">
+    <div className="flex gap-3 mb-6 font-sans">
       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-pr-yellow flex items-center justify-center overflow-hidden">
         <img src={LOGOS.isoBlack} alt="Aurora" className="w-6 h-6" />
       </div>

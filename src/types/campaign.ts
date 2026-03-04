@@ -54,6 +54,7 @@ export interface CampaignConfig {
   audience: AudienceTarget;
   budget: BudgetConfig;
   creative: AdCreative;
+  useAdvantage: boolean;
   status: 'draft' | 'review' | 'launched';
   createdAt: string;
   updatedAt: string;

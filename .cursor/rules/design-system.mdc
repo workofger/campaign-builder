@@ -1,0 +1,41 @@
+---
+description: Partrunner design system tokens and visual identity guidelines
+globs: src/**/*.tsx, src/**/*.ts, tailwind.config.js
+alwaysApply: true
+---
+
+# Partrunner Design System
+
+Always reference `src/design-system.json` before building any UI component. This file is the single source of truth for colors, typography, spacing, border radii, layout dimensions, and component patterns extracted from the official Figma designs.
+
+## Quick Reference
+
+### Colors (use Tailwind tokens)
+- `pr-yellow` (#FDD238) — primary brand, CTA buttons
+- `pr-yellow-alt` (#FBD232) — chat module yellow, admin sidebar
+- `pr-yellow-orange` (#F29F05) — active tab underlines
+- `pr-black` (#14142B) — primary text
+- `pr-text-secondary` (#4E4B66) — labels, descriptions (often at 70% opacity)
+- `pr-text-muted` (#A0A3BD) — timestamps, placeholders
+- `pr-outline` (#D9DBE9) — card borders
+- `pr-surface-light` (#F5F7FB) — page background
+- `pr-surface-warm` (#F9F9F9) — chat/channel list background
+- `pr-success` (#26B76E), `pr-danger` (#FF4757), `pr-link` (#006CFF)
+
+### Typography
+- `font-display` — Gilroy / Bebas Neue (logo, big display headings)
+- `font-sans` — Eudoxus Sans / Barlow (body, labels, customer portal)
+- `font-ui` — Inter (admin portal, chat, sidebar nav)
+
+### Key Patterns
+- Sidebar: yellow bg, white active item, 256px expanded / 64px collapsed
+- Cards: white bg, 1px `pr-outline` border, `rounded-card` (12px), 24px padding
+- Chat bubbles: sent = yellow tint bg, received = yellow border, deleted = italic gray
+- Tabs: text tabs with 2px `pr-yellow-orange` bottom underline
+- Status badges: 5% tinted bg (red/green/orange) with 8px radius
+
+### Do NOT
+- Use colors outside the design system palette
+- Use CSS files or CSS-in-JS (Tailwind only)
+- Use drop shadows on cards (use borders instead)
+- Mix font families within the same portal variant

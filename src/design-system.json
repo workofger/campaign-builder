@@ -1,0 +1,489 @@
+{
+  "$schema": "https://partrunner.com/design-system/v1",
+  "_meta": {
+    "name": "Partrunner Design System",
+    "version": "1.0.0",
+    "description": "Single source of truth for Partrunner's visual identity. Extracted from the Admin Portal Figma file (RZq3PB5MQgW9Ds8O72cWCt).",
+    "figmaFile": "https://www.figma.com/design/RZq3PB5MQgW9Ds8O72cWCt/Admin-Portal",
+    "figmaNodes": {
+      "ddCustomerExpanded": "2715:1513",
+      "chatAdminExpanded_UpdatePassword": "2715:1514",
+      "chatAdminExpanded_Acquisition": "2715:1512",
+      "ddCustomerCollapsed": "2715:1511",
+      "chatCollapsed_Customers": "2715:1510"
+    },
+    "lastUpdated": "2026-03-03"
+  },
+
+  "colors": {
+    "brand": {
+      "yellow": {
+        "value": "#FFD840",
+        "alias": "pr-yellow",
+        "usage": "Primary brand color. Sidebar background, CTA buttons, active highlights."
+      },
+      "yellowAlt": {
+        "value": "#FBD232",
+        "usage": "Chat module variant of brand yellow. Sidebar (admin), chat bubbles, channel highlights."
+      },
+      "yellowAccent": {
+        "value": "#FED330",
+        "usage": "Accent yellow used in borders, badges, branch selector outlines."
+      },
+      "yellowOrange": {
+        "value": "#F29F05",
+        "usage": "Active tab underline, emphasized interactive elements."
+      },
+      "black": {
+        "value": "#14142B",
+        "alias": "pr-black",
+        "usage": "Primary text color. Deep ink black used across all body text and headings."
+      },
+      "trueBlack": {
+        "value": "#000000",
+        "usage": "Logo text, sidebar nav icons, highest-contrast elements."
+      },
+      "white": {
+        "value": "#FFFFFF",
+        "alias": "pr-white",
+        "usage": "Card backgrounds, active sidebar item bg, page surfaces."
+      }
+    },
+
+    "text": {
+      "primary": { "value": "#14142B", "usage": "Main body text, headings, card values." },
+      "secondary": { "value": "#4E4B66", "usage": "Labels, descriptions. Often at 70% opacity." },
+      "tertiary": { "value": "#A0A3BD", "usage": "Muted text: timestamps, channel previews, placeholders." },
+      "dark": { "value": "#040707", "usage": "Chat messages, sidebar nav text (admin variant)." },
+      "midGray": { "value": "#414141", "usage": "Chat timestamps, less prominent info." },
+      "placeholder": { "value": "rgba(7, 4, 23, 0.6)", "usage": "Search input placeholder, section titles." },
+      "statusText": { "value": "rgba(7, 4, 23, 0.8)", "usage": "Contract status badge text." }
+    },
+
+    "surfaces": {
+      "pageBgLight": { "value": "#F5F7FB", "usage": "Delivery page background, main content area." },
+      "pageBgWarm": { "value": "#F9F9F9", "usage": "Chat module background, channel list panel." },
+      "cardBg": { "value": "#FFFFFF", "usage": "Card surfaces, chat box, header bar." },
+      "chatHeaderBg": { "value": "rgba(251, 210, 50, 0.26)", "usage": "Chat header bar, sent message bubbles." },
+      "channelActiveBg": { "value": "rgba(251, 210, 50, 0.26)", "usage": "Active channel in list (light yellow tint)." },
+      "channelActiveBgSolid": { "value": "#FBD232", "usage": "Active channel in list (solid variant)." },
+      "sidebarActiveBg": { "value": "#FFFFFF", "usage": "Active nav item background in sidebar." },
+      "sidebarActiveBgAdmin": { "value": "#F9F9F9", "usage": "Active nav item background in admin sidebar." }
+    },
+
+    "borders": {
+      "outline": { "value": "#D9DBE9", "usage": "Card borders, dividers in delivery page." },
+      "chatBubbleBorder": { "value": "#FBD232", "usage": "Received message bubble border." },
+      "headerBranch": { "value": "#FED330", "usage": "Branch selector border." },
+      "sidebarSeparator": { "value": "rgba(0, 0, 0, 0.10)", "usage": "Sidebar divider lines." }
+    },
+
+    "status": {
+      "success": { "value": "#26B76E", "usage": "Completed deliveries, positive badges." },
+      "successAlt": { "value": "#10C89B", "usage": "Alternative green for active/online indicators." },
+      "danger": { "value": "#FF4757", "usage": "Pending delivery warnings, error states." },
+      "warning": { "value": "#F29F05", "usage": "Active tab, attention-needed states." },
+      "link": { "value": "#006CFF", "usage": "Reply links, clickable blue text in chat." }
+    },
+
+    "statusBadgeBackgrounds": {
+      "pendingDelivery": { "value": "rgba(255, 71, 87, 0.05)", "usage": "Red-tinted badge for 'Create delivery for tomorrow is pending'." },
+      "completed": { "value": "rgba(38, 183, 110, 0.05)", "usage": "Green-tinted badge for 'All deliveries completed for the day'." },
+      "pricingPending": { "value": "rgba(255, 159, 67, 0.05)", "usage": "Orange-tinted badge for 'Pricing estimate need to be shared'." }
+    },
+
+    "misc": {
+      "scrollbar": { "value": "#A1A1A1", "usage": "Custom scrollbar thumb color." },
+      "vehicleBg": { "value": "rgba(245, 245, 245, 0.7)", "usage": "Vehicle thumbnail placeholder background." }
+    }
+  },
+
+  "typography": {
+    "fontFamilies": {
+      "display": {
+        "name": "Gilroy",
+        "weight": "ExtraBold (800)",
+        "usage": "Logo wordmark 'PARTRUNNER'. Uppercase, tracking -0.2px.",
+        "fallback": ["Bebas Neue", "sans-serif"],
+        "tailwindAlias": "font-display"
+      },
+      "body": {
+        "name": "Eudoxus Sans",
+        "weights": ["Regular (400)", "Medium (500)"],
+        "usage": "Customer portal: nav labels, card labels/values, tabs, section titles, search placeholder, status badges.",
+        "fallback": ["Barlow", "system-ui", "sans-serif"],
+        "tailwindAlias": "font-sans"
+      },
+      "ui": {
+        "name": "Inter",
+        "weights": ["Regular (400)", "Medium (500)", "Semi Bold (600)", "Bold (700)"],
+        "usage": "Admin portal: sidebar nav items, chat messages, timestamps, channel names, language selector.",
+        "fallback": ["system-ui", "sans-serif"]
+      },
+      "badge": {
+        "name": "TT Commons",
+        "weight": "Regular (400)",
+        "usage": "Counter badges (e.g. '4', '2') in green circles.",
+        "fallback": ["sans-serif"]
+      }
+    },
+
+    "styles": {
+      "logoWordmark": {
+        "font": "Gilroy ExtraBold",
+        "size": "24px",
+        "tracking": "-0.2px",
+        "transform": "uppercase",
+        "color": "#000000"
+      },
+      "sidebarNavItem": {
+        "font": "Eudoxus Sans Regular | Inter Medium",
+        "size": "14px",
+        "tracking": "-0.2px",
+        "transform": "capitalize",
+        "color": "#14142B | #040707"
+      },
+      "cardLabel": {
+        "font": "Eudoxus Sans Regular",
+        "size": "14px",
+        "opacity": 0.7,
+        "color": "#4E4B66"
+      },
+      "cardValue": {
+        "font": "Eudoxus Sans Medium",
+        "size": "16px",
+        "tracking": "-0.5px",
+        "transform": "capitalize",
+        "color": "#14142B"
+      },
+      "cardMetricValue": {
+        "font": "Eudoxus Sans Medium",
+        "size": "14px",
+        "lineHeight": "16px",
+        "color": "#14142B"
+      },
+      "cardMetricLabel": {
+        "font": "Eudoxus Sans Regular",
+        "size": "14px",
+        "lineHeight": "16px",
+        "opacity": 0.7,
+        "color": "#4E4B66"
+      },
+      "cardStatusBadge": {
+        "font": "Eudoxus Sans Regular",
+        "size": "12px",
+        "color": "rgba(7, 4, 23, 0.8)"
+      },
+      "tabActive": {
+        "font": "Eudoxus Sans Medium",
+        "size": "16px",
+        "tracking": "-0.5px",
+        "transform": "capitalize",
+        "color": "#F29F05"
+      },
+      "tabInactive": {
+        "font": "Eudoxus Sans Medium",
+        "size": "16px",
+        "tracking": "-0.5px",
+        "transform": "capitalize",
+        "color": "#14142B"
+      },
+      "sectionTitle": {
+        "font": "Eudoxus Sans Medium",
+        "size": "16px",
+        "tracking": "-0.5px",
+        "transform": "capitalize",
+        "color": "rgba(7, 4, 23, 0.6)"
+      },
+      "badgeCount": {
+        "font": "TT Commons Regular",
+        "size": "18px",
+        "tracking": "-0.2px",
+        "color": "#FFFFFF",
+        "textAlign": "center"
+      },
+      "searchPlaceholder": {
+        "font": "Eudoxus Sans Regular",
+        "size": "16px",
+        "tracking": "-0.3px",
+        "lineHeight": "24px",
+        "color": "rgba(7, 4, 23, 0.6)"
+      },
+      "chatMessage": {
+        "font": "Inter Regular",
+        "size": "16px",
+        "lineHeight": "30px",
+        "color": "#040707"
+      },
+      "chatTimestamp": {
+        "font": "Inter Medium",
+        "size": "10px",
+        "lineHeight": "30px",
+        "color": "#A0A3BD"
+      },
+      "chatReplyLink": {
+        "font": "Inter Bold",
+        "size": "12px",
+        "color": "#006CFF"
+      },
+      "chatChannelName": {
+        "font": "Inter SemiBold",
+        "size": "14px",
+        "color": "#000000"
+      },
+      "chatChannelSubtitle": {
+        "font": "Inter Medium",
+        "size": "14px",
+        "transform": "lowercase",
+        "color": "#000000"
+      },
+      "channelListName": {
+        "font": "Inter Bold",
+        "size": "14px",
+        "color": "#040707"
+      },
+      "channelListPreview": {
+        "font": "Inter Medium",
+        "size": "14px",
+        "color": "#A0A3BD"
+      },
+      "languageSelector": {
+        "font": "Inter Regular",
+        "size": "20px",
+        "color": "#040707"
+      },
+      "headerBranchName": {
+        "font": "Eudoxus Sans Medium",
+        "size": "14px",
+        "tracking": "-0.5px",
+        "color": "#14142B"
+      }
+    }
+  },
+
+  "spacing": {
+    "base": "4px",
+    "scale": {
+      "0.5": "2px",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px"
+    },
+    "components": {
+      "cardPadding": "24px",
+      "cardInternalGap": "24px",
+      "metricColumnsGap": "24px",
+      "statusBadgePaddingY": "8px",
+      "statusBadgePaddingLeft": "8px",
+      "statusBadgePaddingRight": "16px",
+      "tabGap": "24px",
+      "sectionGap": "40px",
+      "sectionTitleToContent": "16px",
+      "sidebarNavItemGap": "32px",
+      "sidebarNavIconToLabel": "16px",
+      "chatChannelItemPaddingY": "4px",
+      "chatBubblePaddingX": "12px",
+      "chatMessageGap": "10px"
+    }
+  },
+
+  "borderRadius": {
+    "none": "0px",
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "14px",
+    "2xl": "16px",
+    "3xl": "18px",
+    "full": "9999px",
+    "components": {
+      "card": "12px",
+      "sidebarActiveItem": "12px",
+      "sidebarActiveItemAdmin": "14px",
+      "vehicleThumbnail": "8px",
+      "statusBadge": "8px",
+      "sidebarLogoIcon": "8px",
+      "headerBranchSelector": "8px",
+      "chatBox": "12px",
+      "chatSentBubble": { "tl": "18px", "tr": "18px", "bl": "18px", "br": "0px" },
+      "chatReceivedBubble": { "tl": "18px", "tr": "18px", "bl": "0px", "br": "16px" },
+      "chatChannelActive": "16px",
+      "scrollbar": "12px",
+      "chatDeletedBubble": "18px"
+    }
+  },
+
+  "layout": {
+    "sidebar": {
+      "expandedWidth": "256px",
+      "collapsedWidth": "64px",
+      "logoAreaHeight": "80px",
+      "transition": "width 300ms ease-in-out"
+    },
+    "header": {
+      "height": "80px",
+      "background": "#FFFFFF"
+    },
+    "content": {
+      "background": "#F5F7FB"
+    },
+    "chat": {
+      "channelListWidth": "300px",
+      "channelListBackground": "#F9F9F9"
+    },
+    "contractCard": {
+      "width": "412px",
+      "gridColumns": 3,
+      "vehicleThumbnailSize": { "width": "58px", "height": "48px" }
+    }
+  },
+
+  "shadows": {
+    "_note": "The Figma designs use borders (D9DBE9) instead of drop shadows for card elevation. Minimal shadow usage is a core aesthetic choice.",
+    "card": "none (uses border: 1px solid #D9DBE9)",
+    "elevated": "0 1px 3px rgba(0, 0, 0, 0.08)"
+  },
+
+  "assets": {
+    "logos": {
+      "baseUrl": "https://lrzcturtxtzhdzqacefy.supabase.co/storage/v1/object/public/Imagenes/",
+      "variants": {
+        "fullColor": "FULL,%20COLOR@2x.png",
+        "fullBicolor": "FULL,%20BICOLOR@2x.png",
+        "fullBlack": "FULL,%20NEG@2x.png",
+        "isoYellow": "ISO,%20COLOR@2x.png",
+        "isoBlack": "ISO,%20NEG@2x.png"
+      },
+      "usage": {
+        "sidebarExpanded": "fullBlack (dark logo on yellow bg)",
+        "sidebarCollapsed": "isoBlack (icon only on yellow bg)",
+        "headerDarkMode": "fullColor (yellow logo on dark bg)",
+        "loginPage": "fullColor"
+      }
+    },
+    "iconStyle": {
+      "sidebarIcons": {
+        "size": "20-27px",
+        "strokeWidth": "2 (default) | 2.5 (active)",
+        "color": "#000000 (customer) | #040707 (admin)"
+      },
+      "headerIcons": {
+        "size": "20-24px",
+        "sources": ["Figma custom SVGs", "Lucide React equivalents"]
+      },
+      "statusIcons": {
+        "size": "16px",
+        "source": "vuesax/linear/note-favorite (Figma component)"
+      }
+    }
+  },
+
+  "patterns": {
+    "sidebar": {
+      "description": "Yellow (#FFD840/#FBD232) fixed sidebar. Active item gets white rounded bg. Collapsible from 256px to 64px with icon-only mode.",
+      "variants": {
+        "customer": {
+          "background": "#FFD840",
+          "font": "Eudoxus Sans",
+          "navItems": ["Request Delivery", "Dedicated Delivery", "Previous Delivery", "Dashboard", "Saved Address", "Wallet", "Invoice", "Branch Details", "Refer Contact", "Admin"],
+          "bottomItems": ["FAQs", "Personal Profile"]
+        },
+        "admin": {
+          "background": "#FBD232",
+          "font": "Inter",
+          "navItems": ["Chat", "Routes", "Schedule", "Matching", "Projects", "Quotations", "Acquisition", "Affiliations", "Customers", "Accounting", "Update Password"],
+          "bottomItems": ["FAQs", "Personal Profile"]
+        }
+      }
+    },
+    "contractCard": {
+      "description": "White card with D9DBE9 border, 12px radius, 24px padding. Header row (request ID + start date + vehicle thumb), separator, metrics row (3 columns), status badge.",
+      "statusBadgeColors": {
+        "pendingDelivery": { "bg": "rgba(255, 71, 87, 0.05)", "icon": "red-tinted note-favorite" },
+        "completed": { "bg": "rgba(38, 183, 110, 0.05)", "icon": "green-tinted note-favorite" },
+        "pricingPending": { "bg": "rgba(255, 159, 67, 0.05)", "icon": "orange-tinted note-favorite" }
+      }
+    },
+    "chatBubble": {
+      "sent": {
+        "align": "right",
+        "background": "rgba(251, 210, 50, 0.26)",
+        "borderRadius": "18px 18px 0 18px",
+        "textColor": "#040707",
+        "avatarPosition": "right"
+      },
+      "received": {
+        "align": "left",
+        "background": "transparent",
+        "border": "1px solid #FBD232",
+        "borderRadius": "18px 18px 16px 0",
+        "textColor": "#040707",
+        "avatarPosition": "left"
+      },
+      "deleted": {
+        "align": "right",
+        "background": "rgba(251, 210, 50, 0.26)",
+        "borderRadius": "18px",
+        "textColor": "#414141",
+        "fontStyle": "italic",
+        "fontSize": "12px"
+      }
+    },
+    "tabs": {
+      "description": "Horizontal text tabs with bottom underline indicator. Active tab has F29F05 (amber) 2px underline, active text color.",
+      "underlineHeight": "2px",
+      "underlineColor": "#F29F05",
+      "gap": "24px"
+    },
+    "countBadge": {
+      "description": "Green circle (#26B76E) with white number. Used after section titles.",
+      "size": "24px",
+      "background": "#26B76E",
+      "textColor": "#FFFFFF",
+      "fontSize": "18px",
+      "borderRadius": "full"
+    },
+    "header": {
+      "description": "White bar, 80px tall. Left: search icon + placeholder text. Right: branch selector (yellow border pill) + action icons (40px each).",
+      "searchIcon": "20px, left-aligned",
+      "branchSelector": {
+        "border": "1px solid #FED330",
+        "borderRadius": "8px",
+        "padding": "8px"
+      }
+    }
+  },
+
+  "tailwindMapping": {
+    "_note": "Map design tokens to tailwind.config.js extend values for consistent usage.",
+    "colors": {
+      "pr-yellow": "#FDD238",
+      "pr-yellow-alt": "#FBD232",
+      "pr-yellow-accent": "#FED330",
+      "pr-yellow-orange": "#F29F05",
+      "pr-black": "#14142B",
+      "pr-true-black": "#000000",
+      "pr-white": "#FFFFFF",
+      "pr-text-secondary": "#4E4B66",
+      "pr-text-muted": "#A0A3BD",
+      "pr-text-dark": "#040707",
+      "pr-outline": "#D9DBE9",
+      "pr-surface-light": "#F5F7FB",
+      "pr-surface-warm": "#F9F9F9",
+      "pr-success": "#26B76E",
+      "pr-success-alt": "#10C89B",
+      "pr-danger": "#FF4757",
+      "pr-link": "#006CFF"
+    },
+    "fontFamily": {
+      "display": ["Gilroy", "Bebas Neue", "sans-serif"],
+      "sans": ["Eudoxus Sans", "Barlow", "system-ui", "sans-serif"],
+      "ui": ["Inter", "system-ui", "sans-serif"]
+    }
+  }
+}

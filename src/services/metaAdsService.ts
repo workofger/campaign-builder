@@ -1,74 +1,149 @@
-// Meta Marketing API Service — Stub implementation
-// TODO: Replace mock data with real Meta Marketing API v21.0 calls
+import { apiGet, apiPost } from '@/services/apiClient';
+import type { CampaignConfig } from '@/types/campaign';
 
-import type { MetaCampaign, MetaAdSet, MetaAd, MetaAudience, MetaApiResponse, CampaignConfig } from '@/types/campaign';
+// ---------------------------------------------------------------------------
+// Campaign list
+// ---------------------------------------------------------------------------
 
-const delay = (ms: number) => new Promise(r => setTimeout(r, ms));
+export interface MetaCampaignItem {
+  id: string;
+  name: string;
+  objective: string;
+  status: string;
+  daily_budget?: string;
+  lifetime_budget?: string;
+  start_time?: string;
+  stop_time?: string;
+  created_time: string;
+  updated_time: string;
+  advantage_state_info?: {
+    advantage_state: string;
+    advantage_budget_state: string;
+    advantage_audience_state: string;
+    advantage_placement_state: string;
+  };
+  special_ad_categories?: string[];
+}
 
-export async function createCampaign(config: CampaignConfig): Promise<MetaApiResponse<MetaCampaign>> {
-  // TODO: POST to /{ad_account_id}/campaigns
-  await delay(1500);
-  return {
-    data: {
-      id: `camp_${Date.now()}`,
-      name: config.name,
-      objective: config.objective?.type || 'OUTCOME_LEADS',
-      status: 'PAUSED',
-      daily_budget: config.budget.type === 'daily' ? String(config.budget.amount * 100) : undefined,
-      lifetime_budget: config.budget.type === 'lifetime' ? String(config.budget.amount * 100) : undefined,
-    }
+export async function fetchMetaCampaigns(): Promise<MetaCampaignItem[]> {
+  const res = await apiGet<{ data: MetaCampaignItem[] }>('/api/meta/campaigns');
+  return res.data;
+}
+
+// ---------------------------------------------------------------------------
+// Campaign detail (full hierarchy)
+// ---------------------------------------------------------------------------
+
+export interface MetaAdSetDetail {
+  id: string;
+  name: string;
+  status: string;
+  daily_budget?: string;
+  lifetime_budget?: string;
+  start_time?: string;
+  end_time?: string;
+  billing_event: string;
+  optimization_goal: string;
+  bid_strategy?: string;
+  targeting: Record<string, unknown>;
+}
+
+export interface MetaAdDetail {
+  id: string;
+  name: string;
+  status: string;
+  creative: {
+    id: string;
+    name?: string;
+    title?: string;
+    body?: string;
+    image_url?: string;
+    thumbnail_url?: string;
+    object_story_spec?: Record<string, unknown>;
+    asset_feed_spec?: Record<string, unknown>;
   };
 }
 
-export async function createAdSet(campaignId: string, config: CampaignConfig): Promise<MetaApiResponse<MetaAdSet>> {
-  // TODO: POST to /{ad_account_id}/adsets
-  await delay(1000);
-  return {
-    data: {
-      id: `adset_${Date.now()}`,
-      name: `${config.name} - Ad Set`,
-      campaign_id: campaignId,
-      targeting: {
-        geo_locations: { cities: config.audience.locations },
-        age_min: config.audience.ageRange[0],
-        age_max: config.audience.ageRange[1],
-        interests: config.audience.interests,
-      },
-      bid_strategy: config.budget.bidStrategy.toUpperCase(),
-    }
-  };
+export interface MetaInsights {
+  impressions?: string;
+  clicks?: string;
+  spend?: string;
+  reach?: string;
+  ctr?: string;
+  cpc?: string;
+  cpm?: string;
+  actions?: Array<{ action_type: string; value: string }>;
+  date_start: string;
+  date_stop: string;
 }
 
-export async function createAd(adSetId: string, config: CampaignConfig): Promise<MetaApiResponse<MetaAd>> {
-  // TODO: POST to /{ad_account_id}/ads
-  await delay(1000);
-  return {
-    data: {
-      id: `ad_${Date.now()}`,
-      name: `${config.name} - Ad`,
-      adset_id: adSetId,
-      creative: { id: `cr_${Date.now()}` },
-      status: 'PAUSED',
-    }
-  };
+export interface MetaCampaignFull {
+  campaign: MetaCampaignItem;
+  adsets: MetaAdSetDetail[];
+  ads: MetaAdDetail[];
+  insights: MetaInsights | null;
 }
 
-export async function createCustomAudience(name: string, description: string): Promise<MetaApiResponse<MetaAudience>> {
-  // TODO: POST to /{ad_account_id}/customaudiences
-  await delay(800);
-  return {
-    data: {
-      id: `aud_${Date.now()}`,
-      name,
-      approximate_count: Math.floor(Math.random() * 50000) + 10000,
-      data_source: { type: 'FILE_IMPORTED' },
-    }
-  };
+export async function fetchCampaignDetail(campaignId: string): Promise<MetaCampaignFull> {
+  const res = await apiGet<{ data: MetaCampaignFull }>(`/api/meta/campaigns/${campaignId}`);
+  return res.data;
 }
 
-export async function estimateReach(config: CampaignConfig): Promise<{ reach: number; impressions: number; cpc: number }> {
-  // TODO: GET from /{ad_account_id}/reachestimate
-  await delay(600);
+// ---------------------------------------------------------------------------
+// Campaign actions
+// ---------------------------------------------------------------------------
+
+export async function updateMetaCampaign(
+  campaignId: string,
+  updates: Record<string, unknown>
+): Promise<void> {
+  await apiPost(`/api/meta/campaigns/${campaignId}/update`, updates);
+}
+
+export async function updateMetaAdSet(
+  adsetId: string,
+  updates: Record<string, unknown>
+): Promise<void> {
+  await apiPost(`/api/meta/adsets/${adsetId}/update`, updates);
+}
+
+export async function duplicateMetaCampaign(
+  campaignId: string,
+  name?: string
+): Promise<{ copied_campaign_id: string }> {
+  const res = await apiPost<{ data: { copied_campaign_id: string } }>(
+    `/api/meta/campaigns/${campaignId}/duplicate`,
+    { name, status: 'PAUSED' }
+  );
+  return res.data;
+}
+
+// ---------------------------------------------------------------------------
+// Local campaign actions
+// ---------------------------------------------------------------------------
+
+export async function estimateReach(
+  campaignId: string
+): Promise<{ usersLowerBound: number; usersUpperBound: number }> {
+  const res = await apiPost<{ data: { usersLowerBound: number; usersUpperBound: number } }>(
+    `/api/campaigns/${campaignId}/estimate`
+  );
+  return res.data;
+}
+
+export async function launchCampaign(
+  campaignId: string
+): Promise<{ success: boolean; metaCampaignId: string }> {
+  return apiPost<{ success: boolean; metaCampaignId: string }>(
+    `/api/campaigns/${campaignId}/launch`
+  );
+}
+
+export function buildMockEstimate(config: CampaignConfig): {
+  reach: number;
+  impressions: number;
+  cpc: number;
+} {
   const base = config.audience.locations.length * 15000;
   const vehicleMultiplier = config.audience.vehicleTypes.length * 0.3 + 0.4;
   const budgetMultiplier = config.budget.amount / 500;
@@ -78,11 +153,4 @@ export async function estimateReach(config: CampaignConfig): Promise<{ reach: nu
     impressions: Math.floor(reach * 3.2),
     cpc: +(Math.random() * 5 + 2).toFixed(2),
   };
-}
-
-export async function launchCampaign(config: CampaignConfig): Promise<{ success: boolean; campaignId: string }> {
-  const campaignRes = await createCampaign(config);
-  const adSetRes = await createAdSet(campaignRes.data.id, config);
-  await createAd(adSetRes.data.id, config);
-  return { success: true, campaignId: campaignRes.data.id };
 }

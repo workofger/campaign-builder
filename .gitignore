@@ -4,3 +4,6 @@ dist
 .env.local
 *.local
 .DS_Store
+server/node_modules
+server/dist
+server/.env

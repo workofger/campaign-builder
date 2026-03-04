@@ -1,13 +1,8 @@
 import { X, CheckCircle, AlertCircle, Info } from 'lucide-react';
-
-interface ToastItem {
-  id: string;
-  message: string;
-  type: 'success' | 'error' | 'info';
-}
+import type { Toast } from '@/hooks/useToast';
 
 interface ToastContainerProps {
-  toasts: ToastItem[];
+  toasts: Toast[];
   onRemove: (id: string) => void;
 }
 
@@ -26,7 +21,7 @@ export function ToastContainer({ toasts, onRemove }: ToastContainerProps) {
         return (
           <div
             key={t.id}
-            className="bg-black border border-pr-yellow/30 text-white px-4 py-3 rounded-lg flex items-center gap-3 shadow-lg animate-slide-up min-w-[280px]"
+            className="bg-black border border-pr-yellow/30 text-white px-4 py-3 rounded-lg flex items-center gap-3 shadow-lg animate-slide-up min-w-[280px] font-sans"
           >
             <Icon size={18} className="text-pr-yellow flex-shrink-0" />
             <p className="text-sm flex-1">{t.message}</p>
